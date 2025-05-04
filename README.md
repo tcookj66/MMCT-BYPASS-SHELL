@@ -34,4 +34,4 @@ MMCT BYPASS SHELL dibangun menggunakan PHP dan memuat logika inti dari file ekst
 
 ## Dukung Saya
 
-- [Linktree](https://linktr.ee)
+- [Linktree](https://linktr.ee/JohnFeliix)
